@@ -1,0 +1,595 @@
+/* Tailwind directives */
+/* CSS Reset and base styles */
+@tailwind base;
+/* Component classes */
+@tailwind components;
+/* Utility classes */
+@tailwind utilities;
+
+/* Custom styles for smooth transitions and animations */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  background-color: #0f172a;
+  color: white;
+}
+
+/* Enhanced animations for UI components */
+@layer utilities {
+  /* Animation for background gradients */
+  @keyframes bg-position {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  
+  .animate-bg-pos {
+    animation: bg-position 8s infinite linear;
+  }
+  
+  .bg-size-200 {
+    background-size: 200% auto;
+  }
+  
+  /* Pulse animation with different speed */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Floating animation for background elements */
+  @keyframes float {
+    0% {
+      transform: translate(10%, 10%);
+    }
+    50% {
+      transform: translate(13%, 13%);
+    }
+    100% {
+      transform: translate(10%, 10%);
+    }
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  /* Blinking cursor animation */
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+  
+  /* Shine effect for buttons */
+  @keyframes shine {
+    0% {
+      width: 0%;
+      left: -10%;
+    }
+    100% {
+      width: 40%;
+      left: 100%;
+    }
+  }
+  
+  .animate-shine {
+    animation: shine 1s ease-in-out;
+  }
+  
+  /* Loading spinner animation */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loader {
+    border: 3px solid rgba(79, 70, 229, 0.3);
+    border-radius: 50%;
+    border-top-color: #4f46e5;
+    width: 2rem;
+    height: 2rem;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Glass effect with improved styling */
+  .glass-effect {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Background patterns */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(79, 70, 229, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 70, 229, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Page transitions */
+.page-transition {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Autofill style overrides */
+@keyframes autofillStart {
+  from {
+    background: transparent;
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+@keyframes autofillCancel {
+  from {
+    background: transparent;
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  animation-name: autofillStart;
+  animation-fill-mode: both;
+}
+
+input:not(:-webkit-autofill) {
+  animation-name: autofillCancel;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: white !important;
+  background-color: #1f2937 !important;
+  box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+  caret-color: white;
+}
+
+/* For autofilled inputs - change icon color */
+.eye-icon-autofill {
+  stroke: black !important;
+  color: black !important;
+}
+
+/* Glass effect for buttons and cards */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Transition classes */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+.sidebar-enter {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.sidebar-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.sidebar-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sidebar-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+/* Platform Blocks */
+.platform-block {
+  position: relative;
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.platform-block:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.35);
+}
+
+/* Tech Pattern Animation */
+@keyframes circuit {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.tech-pattern {
+  background-image: linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: circuit 20s linear infinite;
+}
+
+/* Loading animation */
+.loader {
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-radius: 50%;
+  border-top: 3px solid rgba(99, 102, 241, 0.8);
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.page-transition {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Topic tags styling */
+.topic-tag {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  margin-bottom: 4px;
+  padding: 4px 12px;
+  background: rgba(79, 132, 255, 0.15);
+  border-radius: 16px;
+  font-size: 12px;
+  color: #a3c0f9;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(79, 132, 255, 0.25);
+}
+
+.topic-tag button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  background: rgba(79, 132, 255, 0.2);
+  color: #a3c0f9;
+  transition: all 0.2s ease;
+}
+
+.topic-tag button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* More tags bubble */
+.more-tags-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 12px;
+  background: #4f84ff;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  border: none;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: help;
+}
+
+.more-tags-bubble:hover {
+  background: #3b62da;
+}
+
+/* Topic tags animation */
+@keyframes tag-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.topic-tag,
+.more-tags-bubble {
+  animation: tag-fade-in 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.topic-tag:hover {
+  background: rgba(79, 132, 255, 0.25);
+}
+
+/* Bookmark icon animation */
+@keyframes bookmark-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bookmark-added {
+  animation: bookmark-pulse 0.4s ease-in-out;
+}
+
+/* Status styling */
+.status-solved {
+  color: #3aa363;
+}
+
+.status-attempted {
+  color: #e0a450;
+}
+
+.status-not-attempted {
+  color: #687993;
+}
+
+/* Staggered animation for tags */
+.topic-tag[data-index="0"] {
+  animation-delay: 0.05s;
+}
+
+.topic-tag[data-index="1"] {
+  animation-delay: 0.15s;
+}
+
+.more-tags-bubble {
+  animation-delay: 0.25s;
+}
+
+/* Tooltip styling */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(15, 23, 42, 0.95);
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  z-index: 100;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(79, 132, 255, 0.3);
+  min-width: 120px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Selected topic tags styling */
+.topic-tag.selected-topic {
+  background: rgba(79, 132, 255, 0.3);
+  border-color: rgba(79, 132, 255, 0.5);
+  color: #bfd4ff;
+}
+
+/* Custom difficulty badges for Codeforces */
+.platform-difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Codeforces difficulty specific colors */
+.difficulty-beginner {
+  background-color: rgba(22, 163, 74, 0.3);
+  color: #86efac;
+  border: 1px solid rgb(22, 163, 74, 0.5);
+}
+
+.difficulty-easy {
+  background-color: rgba(5, 150, 105, 0.3);
+  color: #6ee7b7;
+  border: 1px solid rgb(5, 150, 105, 0.5);
+}
+
+.difficulty-lower-mid {
+  background-color: rgba(13, 148, 136, 0.3);
+  color: #5eead4;
+  border: 1px solid rgb(13, 148, 136, 0.5);
+}
+
+.difficulty-mid-level {
+  background-color: rgba(202, 138, 4, 0.3);
+  color: #fde047;
+  border: 1px solid rgb(202, 138, 4, 0.5);
+}
+
+.difficulty-upper-mid {
+  background-color: rgba(234, 88, 12, 0.3);
+  color: #fdba74;
+  border: 1px solid rgb(234, 88, 12, 0.5);
+}
+
+.difficulty-hard {
+  background-color: rgba(220, 38, 38, 0.3);
+  color: #fca5a5;
+  border: 1px solid rgb(220, 38, 38, 0.5);
+}
+
+.difficulty-very-hard {
+  background-color: rgba(126, 34, 206, 0.3);
+  color: #d8b4fe;
+  border: 1px solid rgb(126, 34, 206, 0.5);
+}
+
+/* Sign-in button style */
+.crystal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, rgba(79, 132, 255, 0.8) 0%, rgba(99, 102, 241, 0.8) 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.crystal-button:hover {
+  background: linear-gradient(90deg, rgba(79, 132, 255, 1) 0%, rgba(99, 102, 241, 1) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.crystal-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.5);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 0.8);
+}
+
+/* Code editor styles */
+.code-editor {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.code-editor:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.2);
+}
