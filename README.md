@@ -124,3 +124,4 @@ MIT License
 
 Made with ❤️ by DSA Search Engine Team
 # search-engine
+# rubiks-sol
